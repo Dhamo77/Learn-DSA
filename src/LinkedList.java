@@ -45,4 +45,6 @@ public class LinkedList<T> {
           current=current.next;
       }
    }
+   //write a code for Swap nodes in a linked list without swapping data
+   
 }
