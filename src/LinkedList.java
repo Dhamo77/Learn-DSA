@@ -76,4 +76,5 @@ public class LinkedList<T> {
         curr_x.next = curr_y.next;
         curr_y.next = temp;
       }
+   // write a code for revese the linked list 
 }
