@@ -76,5 +76,15 @@ public class LinkedList<T> {
         curr_x.next = curr_y.next;
         curr_y.next = temp;
       }
-   // write a code for revese the linked list 
+   // code for reverse the linked list
+    public  void reverse(){
+      Node current=head,pre=null,temp;
+      while (current!=null){
+          temp=current.next;
+        current.next=pre;
+        pre=current;
+        current=temp;
+      }
+        head=pre;
+    }
 }
