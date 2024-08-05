@@ -89,6 +89,7 @@ public class LinkedList<T extends Comparable<T> > {
         current.next=pre;
         pre=current;
         current=temp;
+
       }
         head=pre;
     }
@@ -163,5 +164,40 @@ public class LinkedList<T extends Comparable<T> > {
         }
         return result;
     }
-   // write the function for Reverse a Linked List in groups of given size 
+   // function for Reverse a Linked List in groups of given size
+    public void reverse(int size){
+        if (size>=size()){
+            reverse();
+            return;
+        }
+        Node<T> getnode=getnode(head,size);
+        Node<T> get_next=reverse(getnode.next);
+        getnode.next=null;
+        reverse();
+        Node current =head;
+        while (current.next!=null){
+            current=current.next;
+        }
+        current.next=get_next;
+    }
+
+    private Node<T> getnode(Node<T> head, int size) {
+        Node current =head;
+        for (int i=1;i<=size;i++){
+            if (i==size)
+                return current;
+            current=current.next;
+        }
+        return current;
+    }
+    private Node<T> reverse(Node<T> h){
+        Node<T> current=h,pre=null,temp;
+        while (current!=null){
+            temp=current.next;
+            current.next=pre;
+            pre=current;
+            current=temp;
+        }
+        return pre;
+    }
 }
