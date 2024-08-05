@@ -200,4 +200,5 @@ public class LinkedList<T extends Comparable<T> > {
         }
         return pre;
     }
+   //write the code for Detect and Remove Loop in a Linked List
 }
