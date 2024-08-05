@@ -1,7 +1,10 @@
 public class LinkedList<T extends Comparable<T> > {
    private Node<T> head;
     private  int size=0;
-  private class  Node<T extends Comparable<T>> {
+    public int size(){
+        return size;
+    }
+  private static class  Node<T extends Comparable<T>> {
        T value;
        Node<T> head;
        Node next;
@@ -20,7 +23,8 @@ public class LinkedList<T extends Comparable<T> > {
           newnode.next=head;
           head=newnode;
       }
-      return true;
+       size++;
+       return true;
    }
     public  boolean  add(T value){
       if (head==null){
@@ -32,6 +36,7 @@ public class LinkedList<T extends Comparable<T> > {
           while (current.next != null)
               current = current.next;
           current.next = newnode;
+          size++;
       }
         return true;
     }
@@ -89,7 +94,7 @@ public class LinkedList<T extends Comparable<T> > {
     }
    //Merge two sorted linked lists
     public LinkedList<T> merge(LinkedList<T> list1,LinkedList<T> list2){
-        LinkedList temp=new LinkedList<>();
+        LinkedList<T> temp=new LinkedList<>();
         Node<T> l1=list1.head;
         Node<T> l2=list2.head;
         if (l1.value.compareTo(l2.value) <= 0) {
@@ -118,5 +123,44 @@ public class LinkedList<T extends Comparable<T> > {
         return temp;
     }
    
-   // Implement the merge sort for Linked List 
+   //  the below function for merge sort in Linked List
+    public void mergeSort(){
+      head= mergeSort(head);
+    }
+    private Node<T> mergeSort(Node<T> h){
+        if (h==null||h.next==null){
+            return h;
+        }
+        Node<T> middle = get_middle(h);
+        Node<T> mid_nex=middle.next;
+        middle.next=null;
+        Node<T> left = mergeSort(h);
+        Node<T> right= mergeSort(mid_nex);
+        return merge_node(left,right);
+    }
+    private Node<T> get_middle(Node<T> h){
+        if (h==null)
+            return null;
+        Node<T> slow=h,fast=h;
+        while (fast.next!=null&&fast.next.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+    private Node<T> merge_node(Node<T> n1,Node<T> n2){
+        if (n1 == null)
+            return n2;
+        if (n2 == null)
+            return n1;
+        Node<T> result;
+        if (n1.value.compareTo(n2.value) <= 0) {
+            result = n1;
+            result.next = merge_node(n1.next, n2);
+        } else {
+            result = n2;
+            result.next = merge_node(n1, n2.next);
+        }
+        return result;
+    }
 }
