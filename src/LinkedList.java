@@ -1,17 +1,17 @@
-public class LinkedList<T> {
-   private Node head=null;
+public class LinkedList<T extends Comparable<T> > {
+   private Node<T> head;
     private  int size=0;
-  private class  Node{
+  private class  Node<T extends Comparable<T>> {
        T value;
-       Node head;
+       Node<T> head;
        Node next;
        public Node(T value){
-           this.value=value;
-           next=null;
+           this.value= value;
+           this.next=null;
        }
    }
    public   boolean insertFirst(T value){
-      Node newnode = new Node(value);
+      Node<T> newnode = new Node<>(value);
       if (head==null){
           head=newnode;
           head.next=null;
@@ -27,8 +27,8 @@ public class LinkedList<T> {
           insertFirst(value);
           return true;
       }else {
-          Node newnode = new Node(value);
-          Node current = head;
+          Node<T> newnode = new Node<>(value);
+          Node<T> current = head;
           while (current.next != null)
               current = current.next;
           current.next = newnode;
@@ -39,7 +39,7 @@ public class LinkedList<T> {
       return add(value);
     }
    public  void display(){
-      Node current = head;
+      Node<T> current = head;
       while (current!=null){
           System.out.print(current.value+" ");
           current=current.next;
@@ -50,10 +50,10 @@ public class LinkedList<T> {
     public  void swapNodes(T value1,T value2){
       if (value1==value2)
           return;
-      Node pre_x=null;
-      Node pre_y=null;
-      Node curr_x =head;
-        Node curr_y =head;
+      Node<T> pre_x=null;
+      Node<T> pre_y=null;
+      Node<T> curr_x =head;
+        Node<T> curr_y =head;
         while (curr_x!=null&&curr_x.value!=value1){
             pre_x=curr_x;
             curr_x=curr_x.next;
@@ -78,7 +78,7 @@ public class LinkedList<T> {
       }
    // code for reverse the linked list
     public  void reverse(){
-      Node current=head,pre=null,temp;
+      Node<T> current=head,pre=null,temp;
       while (current!=null){
           temp=current.next;
         current.next=pre;
@@ -88,4 +88,33 @@ public class LinkedList<T> {
         head=pre;
     }
    //Merge two sorted linked lists
+    public LinkedList<T> merge(LinkedList<T> list1,LinkedList<T> list2){
+        LinkedList temp=new LinkedList<>();
+        Node<T> l1=list1.head;
+        Node<T> l2=list2.head;
+        if (l1.value.compareTo(l2.value) <= 0) {
+            temp.head = l1;
+            l1 = l1.next;
+        } else {
+            temp.head = l2;
+            l2 = l2.next;
+        }
+        Node<T> dummy =temp.head;
+        while (l1 != null && l2 != null) {
+            if (l1.value.compareTo(l2.value) <= 0) {
+                dummy.next = l1;
+                l1 = l1.next;
+            } else {
+                dummy.next = l2;
+                l2 = l2.next;
+            }
+            dummy = dummy.next;
+        }
+        if (l1 != null) {
+            dummy.next = l1;
+        } else {
+            dummy.next = l2;
+        }
+        return temp;
+    }
 }
