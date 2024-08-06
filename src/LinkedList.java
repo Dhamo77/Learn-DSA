@@ -245,6 +245,8 @@ public class LinkedList<T extends Comparable<T> > {
    static class SumOfList<T extends Number & Comparable<T>>{
        public LinkedList addList(LinkedList<T> first, LinkedList<T> second){
            int num1 = 0, num2 = 0;
+           Node<T> h1=first.head;
+           Node<T> h2 =second.head;
            while (first.head != null) {
                num1 = num1 * 10 + first.head.value.intValue();
                first.head = first.head.next;
@@ -260,7 +262,28 @@ public class LinkedList<T extends Comparable<T> > {
                temp.insertFirst(last);
                num3 = num3 / 10;
            }
+           first.head=h1;
+           second.head=h2;
            return temp;
        }
+   }
+   public boolean isPalindrome(){
+       if (head == null || head.next == null) return true;
+        boolean result = true;
+        Node<T> mid = get_middle(head);
+        Node<T> midHead = reverse(mid.next);
+        Node<T> current = head;
+        Node<T> reversedCurrent = midHead;
+
+       while (current!=null&&reversedCurrent!=null) {
+           if (current.value!=reversedCurrent.value) {
+               result = false;
+               break;
+           }
+           current = current.next;
+           reversedCurrent = reversedCurrent.next;
+       }
+       mid.next=reverse(midHead);
+        return result;
    }
 }
