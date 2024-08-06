@@ -200,5 +200,30 @@ public class LinkedList<T extends Comparable<T> > {
         }
         return pre;
     }
-   //write the code for Detect and Remove Loop in a Linked List
+   // function for Detect and Remove Loop in a Linked List
+    public  boolean detectLoop(){
+      return findLoop(head);
+    }
+    private boolean findLoop(Node<T> h){
+        Node<T> slow=h,fast=h;
+        while (slow!=null&&fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if (slow==fast){
+                deleteLoop(slow,h);
+                return true;
+            }
+        }
+        return false;
+    }
+    private void deleteLoop(Node<T> slow, Node<T> h) {
+        Node<T> p1=slow,p2=slow,temp=p1;
+        int k=1;
+        while (p1.next!=p2){
+            temp=p1;
+            p1=p1.next;
+            k++;
+        }
+        temp.next=null;
+    }
 }
