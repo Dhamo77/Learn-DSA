@@ -241,5 +241,26 @@ public class LinkedList<T extends Comparable<T> > {
         current.next=head;
         head=newHead;
     }
-   // write a function for Add two numbers represented by Linked List
+   // A function for Add two numbers represented by Linked List
+   static class SumOfList<T extends Number & Comparable<T>>{
+       public LinkedList addList(LinkedList<T> first, LinkedList<T> second){
+           int num1 = 0, num2 = 0;
+           while (first.head != null) {
+               num1 = num1 * 10 + first.head.value.intValue();
+               first.head = first.head.next;
+           }
+           while (second.head != null) {
+               num2 = num2 * 10 + second.head.value.intValue();
+               second.head = second.head.next;
+           }
+           int num3 = num1 + num2;
+           LinkedList temp = new LinkedList();
+           while (num3 != 0) {
+               int last = num3 % 10;
+               temp.insertFirst(last);
+               num3 = num3 / 10;
+           }
+           return temp;
+       }
+   }
 }
