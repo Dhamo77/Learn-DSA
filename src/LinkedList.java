@@ -226,5 +226,19 @@ public class LinkedList<T extends Comparable<T> > {
         }
         temp.next=null;
     }
-   // Write a function for Rotate a Linked List
+   // function for Rotate a Linked List
+    public void rotateList(int k){
+        if (head == null || k == 0) {
+            return;
+        }
+        Node<T> position = getnode(head,k);
+        Node<T> newHead=position.next;
+        position.next=null;
+        Node<T> current =newHead;
+        while (current.next!=null){
+            current=current.next;
+        }
+        current.next=head;
+        head=newHead;
+    }
 }
