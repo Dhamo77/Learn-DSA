@@ -263,4 +263,5 @@ public class LinkedList<T extends Comparable<T> > {
            return temp;
        }
    }
+   //Wriete a function to find the list is palindrome or not
 }
