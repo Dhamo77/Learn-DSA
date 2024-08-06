@@ -241,4 +241,5 @@ public class LinkedList<T extends Comparable<T> > {
         current.next=head;
         head=newHead;
     }
+   // write a function for Add two numbers represented by Linked List
 }
