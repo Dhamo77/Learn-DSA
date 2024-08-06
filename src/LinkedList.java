@@ -267,7 +267,8 @@ public class LinkedList<T extends Comparable<T> > {
            return temp;
        }
    }
-   public boolean isPalindrome(){
+    //  function to find the list is palindrome or not
+    public boolean isPalindrome(){
        if (head == null || head.next == null) return true;
         boolean result = true;
         Node<T> mid = get_middle(head);
