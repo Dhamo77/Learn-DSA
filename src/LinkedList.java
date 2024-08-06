@@ -226,4 +226,5 @@ public class LinkedList<T extends Comparable<T> > {
         }
         temp.next=null;
     }
+   // Write a function for Rotate a Linked List
 }
