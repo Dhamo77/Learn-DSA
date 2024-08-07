@@ -89,5 +89,29 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     public int size(){
         return size;
     }
-    // write a function for display the list in reverse order using new tail node on it  
+    public void displayReverse(){
+        Node<T> current =head;
+        while (current.next!=null)
+            current=current.next;
+        System.out.print("[ ");
+        while (current.previous!=null){
+            System.out.print(current.value+" ");
+            current=current.previous;
+        }
+        System.out.print("]");
+        System.out.println();
+    }
+    // method for reverse the DoublyLinkedList
+    public void reverse(){
+        Node<T> current =head,temp=null;
+        while (current!=null){
+            temp=current.previous;
+            current.previous= current.next;
+            current.next=temp;
+            current=current.previous;
+        }
+        if (temp != null) {
+            head = temp.previous;
+        }
+    }
 }
