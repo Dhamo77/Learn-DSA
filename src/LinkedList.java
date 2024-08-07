@@ -4,10 +4,9 @@ public class LinkedList<T extends Comparable<T> > {
     public int size(){
         return size;
     }
-  private static class  Node<T extends Comparable<T>> {
+  private static class  Node<T> {
        T value;
-       Node<T> head;
-       Node next;
+       Node<T> next;
        public Node(T value){
            this.value= value;
            this.next=null;
@@ -275,7 +274,6 @@ public class LinkedList<T extends Comparable<T> > {
         Node<T> midHead = reverse(mid.next);
         Node<T> current = head;
         Node<T> reversedCurrent = midHead;
-
        while (current!=null&&reversedCurrent!=null) {
            if (current.value!=reversedCurrent.value) {
                result = false;
