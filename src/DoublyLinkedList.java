@@ -32,4 +32,5 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         }
         System.out.println("]");
     }
+    // add function for add the element in last 
 }
