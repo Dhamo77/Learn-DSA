@@ -89,4 +89,5 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     public int size(){
         return size;
     }
+    // write a function for display the list in reverse order using new tail node on it  
 }
