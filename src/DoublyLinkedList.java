@@ -114,4 +114,5 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             head = temp.previous;
         }
     }
+    // write a method for QuickSort on Doubly Linked List
 }
