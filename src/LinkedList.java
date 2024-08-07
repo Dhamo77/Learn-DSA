@@ -92,7 +92,7 @@ public class LinkedList<T extends Comparable<T> > {
       }
         head=pre;
     }
-   //Merge two sorted linked lists
+   // function for Merge two sorted linked lists
     public LinkedList<T> merge(LinkedList<T> list1,LinkedList<T> list2){
         LinkedList<T> temp=new LinkedList<>();
         Node<T> l1=list1.head;
