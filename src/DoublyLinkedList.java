@@ -94,7 +94,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         while (current.next!=null)
             current=current.next;
         System.out.print("[ ");
-        while (current.previous!=null){
+        while (current!=null){
             System.out.print(current.value+" ");
             current=current.previous;
         }
@@ -114,5 +114,52 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             head = temp.previous;
         }
     }
-    // write a method for QuickSort on Doubly Linked List
+
+    private Node<T> getTail(Node<T> head) {
+        Node<T> current =head;
+        while (current.next!=null){
+            current=current.next;
+        }
+        return current;
+    }
+    private Node<T> getMid(Node<T> head,Node<T> tail){
+        Node<T> slow=head,fast=head;
+      while (fast!=tail&&fast.next!=tail){
+          slow=slow.next;
+          fast=fast.next.next;
+      }
+        return slow;
+    }
+    public void swapNode(T value1 ,T value2){
+        if (head==null||head.next==null||value1==value2){
+            return;
+        }
+        Node<T> nodeX=head;
+        Node<T> nodeY=head;
+
+
+        while (nodeX.value!=value1&&nodeX.next!=null){
+            nodeX=nodeX.next;
+        }
+        while (nodeY.value!=value2&&nodeY.next!=null){
+            nodeY=nodeY.next;
+        }
+        if (nodeX==null||nodeY==null){
+            return;
+        }
+        if (nodeX.previous!=null){
+            nodeX.previous.next=nodeY;
+        }
+        else
+            head = nodeY;
+        if (nodeY.previous!=null){
+            nodeY.previous.next=nodeX;
+        }
+        else
+            head = nodeX;
+
+        Node<T> temp=nodeX.next;
+        nodeX.next=nodeY.next;
+        nodeY.next=temp;
+    }
 }
