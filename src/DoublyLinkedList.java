@@ -162,4 +162,5 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         nodeX.next=nodeY.next;
         nodeY.next=temp;
     }
+    // quicksort function still now bending
 }
