@@ -160,4 +160,5 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         Node<T> tail = getTail(head);
         quickSort(head,tail);
     }
+    // merge sort for doubly linkedlist
 }
