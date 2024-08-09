@@ -122,7 +122,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         }
         return current;
     }
-    private Node<T> getMid(Node<T> head,Node<T> tail){
+    public Node<T> getMid(Node<T> head,Node<T> tail){
         Node<T> slow=head,fast=head;
       while (fast!=tail&&fast.next!=tail){
           slow=slow.next;
@@ -130,37 +130,34 @@ public class DoublyLinkedList<T extends Comparable<T>> {
       }
         return slow;
     }
-    public void swapNode(T value1 ,T value2){
-        if (head==null||head.next==null||value1==value2){
+
+    private void quickSort(Node<T> low,Node<T> high) {
+        if (high == null || low == high || low == high.next|| low == null ) {
             return;
         }
-        Node<T> nodeX=head;
-        Node<T> nodeY=head;
+        T x = high.value;
+        Node<T> i = low.previous;
+        Node<T> j = low;
+        while (j != high) {
+            if (j.value.compareTo(x) <= 0) {
+                i = (i == null) ? low : i.next;
+                T temp = i.value;
+                i.value = j.value;
+                j.value = temp;
+            }
+            j = j.next;
+        }
+        i = (i == null) ? low : i.next;
+        T temp = i.value;
+        i.value = high.value;
+        high.value = temp;
+        quickSort(low,i.previous);
+        quickSort(i.next,high);
 
-
-        while (nodeX.value!=value1&&nodeX.next!=null){
-            nodeX=nodeX.next;
-        }
-        while (nodeY.value!=value2&&nodeY.next!=null){
-            nodeY=nodeY.next;
-        }
-        if (nodeX==null||nodeY==null){
-            return;
-        }
-        if (nodeX.previous!=null){
-            nodeX.previous.next=nodeY;
-        }
-        else
-            head = nodeY;
-        if (nodeY.previous!=null){
-            nodeY.previous.next=nodeX;
-        }
-        else
-            head = nodeX;
-
-        Node<T> temp=nodeX.next;
-        nodeX.next=nodeY.next;
-        nodeY.next=temp;
     }
-    // quicksort function still now bending
+    public void quickSort()
+    {
+        Node<T> tail = getTail(head);
+        quickSort(head,tail);
+    }
 }
