@@ -122,9 +122,12 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         }
         return current;
     }
-    public Node<T> getMid(Node<T> head,Node<T> tail){
+    public Node<T> getMid(Node<T> head){
+        if (head==null) {
+            return head;
+        }
         Node<T> slow=head,fast=head;
-      while (fast!=tail&&fast.next!=tail){
+      while (fast.next != null && fast.next.next != null){
           slow=slow.next;
           fast=fast.next.next;
       }
@@ -160,5 +163,41 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         Node<T> tail = getTail(head);
         quickSort(head,tail);
     }
-    // merge sort for doubly linkedlist
+    // merge sort for doubly LinkedList
+    public void mergeSort(){
+        head=mergeSort(head);
+    }
+    private Node<T> mergeSort(Node<T> head){
+        if (head==null||head.next==null){
+            return head;
+        }
+        Node<T> middle=getMid(head);
+        Node<T> mid_nex=middle.next;
+        middle.next=null;
+        Node<T> left= mergeSort(head);
+        Node<T> right=mergeSort(mid_nex);
+        return  merge(left,right) ;
+    }
+    private Node<T> merge(Node<T> left,Node<T> right){
+        if (left==null){
+            return right;
+        }
+        if (right==null){
+            return left;
+        }
+        Node<T> result;
+        if (left.value.compareTo(right.value)<0){
+            result=left;
+            result.next = merge(left.next, right);
+            result.next.previous=result;
+            result.previous=null;
+        }
+        else {
+            result=right;
+            result.next = merge(left,right.next);
+            result.next.previous=result;
+            result.previous=null;
+        }
+        return result;
+    }
 }
