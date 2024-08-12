@@ -36,6 +36,10 @@ public class CircularLinkedList<T extends Comparable<T>> {
         size++;
     }
     public void display(){
+        if (head==null){
+            System.out.println("List is empty!");
+            return;
+        }
         Node<T> current =head;
         System.out.print("[ ");
         do {
