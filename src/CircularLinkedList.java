@@ -131,4 +131,5 @@ public class CircularLinkedList<T extends Comparable<T>> {
         current.next=node;
         node.next=temp;
     }
+    // add size function 
 }
