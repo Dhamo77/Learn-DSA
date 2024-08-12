@@ -75,4 +75,5 @@ public class CircularLinkedList<T extends Comparable<T>> {
         System.out.println("]");
 
     }
+    // add function for reverse the circular Linked List
 }
