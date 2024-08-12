@@ -90,5 +90,45 @@ public class CircularLinkedList<T extends Comparable<T>> {
         tail=head;
         head=head.next;
     }
-    //create a function for Sorted insert for circular linked list
+    // function for Sorted insert for circular linked list
+    public void sortedInsert(T value){
+        if (head==null||head.value.compareTo(value)>=0){
+            insertFirst(value);
+            return;
+        }
+        if (tail.value.compareTo(value)<0){
+            add(value);
+            return;
+        }
+        Node<T> newNode=new Node<>(value);
+        Node<T> current =head;
+        int count=1;
+        while (current.value.compareTo(newNode.value)<0){
+            current=current.next;
+            count++;
+        }
+        insertValue(count-1,newNode);
+
+    }
+    private void insertValue(int count,Node<T> node){
+        if (head==null){
+            return;
+        }
+        Node<T> temp;
+        if (count==1){
+             temp=head.next;
+            head.next=node;
+            node.next=temp;
+            return;
+        }
+        Node<T> current =head;
+        int i=1;
+        while (i<count){
+            current=current.next;
+            i++;
+        }
+        temp=current.next;
+        current.next=node;
+        node.next=temp;
+    }
 }
