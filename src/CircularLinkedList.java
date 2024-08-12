@@ -27,6 +27,7 @@ public class CircularLinkedList<T extends Comparable<T>> {
     public void add(T value){
         if (head==null){
             insertFirst(value);
+            return;
         }
         Node<T> newNode = new Node<>(value);
         tail.next=newNode;
@@ -59,13 +60,13 @@ public class CircularLinkedList<T extends Comparable<T>> {
         Node<T> head2=mid.next;
         mid.next=currentHead;
         tail.next=head2;
-        diplay(currentHead);
-        diplay(head2);
+        display(currentHead);
+        display(head2);
         mid.next=head2;
         tail.next=currentHead;
     }
 
-    private void diplay(Node<T> head) {
+    private void display(Node<T> head) {
         Node<T> current=head;
         System.out.print("[ ");
         do {
@@ -108,7 +109,7 @@ public class CircularLinkedList<T extends Comparable<T>> {
             count++;
         }
         insertValue(count-1,newNode);
-
+        size++;
     }
     private void insertValue(int count,Node<T> node){
         if (head==null){
@@ -131,5 +132,8 @@ public class CircularLinkedList<T extends Comparable<T>> {
         current.next=node;
         node.next=temp;
     }
-    // add size function 
+    // function for getSize
+    public int size(){
+        return size;
+    }
 }
