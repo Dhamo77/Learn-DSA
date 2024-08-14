@@ -2,19 +2,28 @@ import java.util.Scanner;
 import java.util.Stack;
 public class Stack_programs {
     static Scanner scan = new Scanner(System.in);
-
+   static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
-        System.out.print("Enter the string : ");
-        String input= scan.nextLine();
-       System.out.println("Infix to Postfix : "+infixToPostfix(input));
-       System.out.println("Infix to Prefix : "+infixToPrefix(input));
-       System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
-       System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
-       System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
-       System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
-       System.out.println(balancedBrackets("[()]{}{[()()]()}"));
-       System.out.println(balancedBrackets("[{(]})]"));
-       System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
+//        System.out.print("Enter the string : ");
+//        String input= scan.nextLine();
+//       System.out.println("Infix to Postfix : "+infixToPostfix(input));
+//       System.out.println("Infix to Prefix : "+infixToPrefix(input));
+//       System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
+//       System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
+//       System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
+//       System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
+//       System.out.println(balancedBrackets("[()]{}{[()()]()}"));
+//       System.out.println(balancedBrackets("[{(]})]"));
+//       System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
+
+//        s.push(4);
+//        s.push(3);
+//        s.push(2);
+//        s.push(1);
+//        System.out.println(s);
+//        reverseStack();
+//        System.out.println(s);
+        System.out.println(reverseString("Dhamotharan"));
     }
 
     // method for  Infix expression to Postfix expression
@@ -266,5 +275,37 @@ public class Stack_programs {
         }
         return ans;
     }
-    // write method for Reverse a Stack using Recursion
+    // method for Reverse a Stack using Recursion
+    public static  void reverseStack(){
+        if (s.isEmpty()){
+            return;
+        }
+        int x=s.peek();
+        s.pop();
+        reverseStack();
+        addBottom(x);
+    }
+    private static void addBottom(int x) {
+        if (s.isEmpty()){
+            s.push(x);
+        }
+        else {
+            int k=s.peek();
+            s.pop();
+            addBottom(x);
+            s.push(k);
+        }
+    }
+    // method for Reverse a String using Stack
+    public static String reverseString(String input){
+        StringBuffer ans =new StringBuffer();
+        Stack<Character> stack =new Stack<>();
+        for (int i=0;i<input.length();i++){
+            stack.push(input.charAt(i));
+        }
+        for (int i=0;i<input.length();i++){
+            ans.append(stack.pop());
+        }
+        return ans.toString();
+    }
 }
