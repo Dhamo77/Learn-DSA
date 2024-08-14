@@ -6,13 +6,14 @@ public class Stack_programs {
     public static void main(String[] args) {
         System.out.print("Enter the string : ");
         String input= scan.next();
-//        System.out.println("Infix to Postfix : "+infixToPostfix(input));
-//        System.out.println("Infix to Prefix : "+infixToPrefix(input));
-//        System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
-//        System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
-//        System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
-//        System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
-        System.out.println(balancedBrackets(input));
+       System.out.println("Infix to Postfix : "+infixToPostfix(input));
+       System.out.println("Infix to Prefix : "+infixToPrefix(input));
+       System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
+       System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
+       System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
+       System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
+       System.out.println(balancedBrackets("[()]{}{[()()]()}"));
+       System.out.println(balancedBrackets("[{(]})]"));
     }
 
     // method for  Infix expression to Postfix expression
