@@ -6,12 +6,13 @@ public class Stack_programs {
     public static void main(String[] args) {
         System.out.print("Enter the string : ");
         String input= scan.next();
-        System.out.println("Infix to Postfix : "+infixToPostfix(input));
-        System.out.println("Infix to Prefix : "+infixToPrefix(input));
-        System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
-        System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
-        System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
-        System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
+//        System.out.println("Infix to Postfix : "+infixToPostfix(input));
+//        System.out.println("Infix to Prefix : "+infixToPrefix(input));
+//        System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
+//        System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
+//        System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
+//        System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
+        System.out.println(balancedBrackets(input));
     }
 
     // method for  Infix expression to Postfix expression
@@ -152,7 +153,7 @@ public class Stack_programs {
         }
         return stack.pop();
     }
-    // function for postfix to infix
+    // method for postfix to infix
     public static String postToInfix(String postfix){
         char c;
         Stack<String> stack=new Stack<>();
@@ -169,5 +170,26 @@ public class Stack_programs {
             }
         }
         return stack.pop();
+    }
+
+    // method Check for Balanced Brackets in an expression
+    public static String balancedBrackets(String input){
+        Stack<Character> stack =new Stack<>();
+        char c;
+        for (int i=0;i<input.length();i++){
+            c=input.charAt(i);
+            if (stack.isEmpty()&&(c==']'||c=='}'||c==')')){
+                return "Unbalanced";
+            }
+            else if (c=='('||c=='{'||c=='['){
+                stack.push(c);
+            }
+            else if ((stack.peek()=='{'&&(c!=']'&&c!=')'))||(stack.peek()=='('&&(c!=']'&&c!='}'))||(stack.peek()=='['&&(c!='}'&&c!=')'))){
+                stack.pop();
+            }
+        }
+        if (!stack.isEmpty())
+            return "Unbalanced";
+        return "Balanced";
     }
 }
