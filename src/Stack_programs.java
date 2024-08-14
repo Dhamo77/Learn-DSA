@@ -14,7 +14,7 @@ public class Stack_programs {
         System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
     }
 
-    // function for  Infix expression to Postfix expression
+    // method for  Infix expression to Postfix expression
     public static String infixToPostfix(String input) {
         Stack<Character> stack = new Stack<>();
         StringBuffer ans = new StringBuffer();
@@ -60,7 +60,7 @@ public class Stack_programs {
             return 'R';
         return 'L';
     }
-    // function for infix to prefix Conversion
+    // method for infix to prefix Conversion
     public static String infixToPrefix(String input) {
         StringBuffer prefix=new StringBuffer();
         Stack<Character> stack=new Stack<>();
@@ -90,7 +90,7 @@ public class Stack_programs {
         }
         return prefix.toString();
     }
-    // function for prefix to infix Conversion
+    // method for prefix to infix Conversion
     public static String prefixToInfix(String prefix){
         Stack<String> stack =new Stack<>();
         for (int i=prefix.length()-1;i>=0;i--){
@@ -119,7 +119,7 @@ public class Stack_programs {
         }
         return false;
     }
-    // function for prefix to postfix
+    // method for prefix to postfix
     public  static String preToPost(String prefix){
         Stack<String> stack =new Stack<>();
         char c;
@@ -171,5 +171,3 @@ public class Stack_programs {
         return stack.pop();
     }
 }
-
-    
