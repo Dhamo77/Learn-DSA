@@ -4,25 +4,25 @@ public class Stack_programs {
     static Scanner scan = new Scanner(System.in);
    static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
-//        System.out.print("Enter the string : ");
-//        String input= scan.nextLine();
-//       System.out.println("Infix to Postfix : "+infixToPostfix(input));
-//       System.out.println("Infix to Prefix : "+infixToPrefix(input));
-//       System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
-//       System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
-//       System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
-//       System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
-//       System.out.println(balancedBrackets("[()]{}{[()()]()}"));
-//       System.out.println(balancedBrackets("[{(]})]"));
-//       System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
+       System.out.print("Enter the string : ");
+       String input= scan.nextLine();
+      System.out.println("Infix to Postfix : "+infixToPostfix(input));
+      System.out.println("Infix to Prefix : "+infixToPrefix(input));
+      System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
+      System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
+      System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
+      System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
+      System.out.println(balancedBrackets("[()]{}{[()()]()}"));
+      System.out.println(balancedBrackets("[{(]})]"));
+      System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
 
-//        s.push(4);
-//        s.push(3);
-//        s.push(2);
-//        s.push(1);
-//        System.out.println(s);
-//        reverseStack();
-//        System.out.println(s);
+       s.push(4);
+       s.push(3);
+       s.push(2);
+       s.push(1);
+       System.out.println(s);
+       reverseStack();
+       System.out.println(s);
         System.out.println(reverseString("Dhamotharan"));
     }
 
