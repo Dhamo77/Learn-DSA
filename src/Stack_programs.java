@@ -5,7 +5,7 @@ public class Stack_programs {
 
     public static void main(String[] args) {
         System.out.print("Enter the string : ");
-        String input= scan.next();
+        String input= scan.nextLine();
        System.out.println("Infix to Postfix : "+infixToPostfix(input));
        System.out.println("Infix to Prefix : "+infixToPrefix(input));
        System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
@@ -14,6 +14,7 @@ public class Stack_programs {
        System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
        System.out.println(balancedBrackets("[()]{}{[()()]()}"));
        System.out.println(balancedBrackets("[{(]})]"));
+       System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
     }
 
     // method for  Infix expression to Postfix expression
@@ -192,5 +193,77 @@ public class Stack_programs {
         if (!stack.isEmpty())
             return "Unbalanced";
         return "Balanced";
+    }
+    // method for Arithmetic Expression Evaluation
+    public static int arithmeticEvaluation(String input){
+      Stack<Integer> value=new Stack<>();
+      Stack<Character> operation = new Stack<>();
+      char c;
+      for (int i=0;i<input.length();i++){
+          c=input.charAt(i);
+          if (c==' ');
+          else if (c>='0'&&c<='9'){
+              StringBuffer num=new StringBuffer();
+              while (i<input.length()&&input.charAt(i)>='0'&&input.charAt(i)<='9'){
+                  num.append(input.charAt(i++));
+              }
+              value.push(Integer.parseInt(num.toString()));
+              i--;
+          } else if (c=='(') {
+              operation.push(c);
+
+          } else if (c==')') {
+              while (operation.peek()!='('){
+                  value.push(mathOperation(value.pop(),value.pop(),operation.pop()));
+              }
+              operation.pop();
+
+          } else if (isOperator(c)) {
+              while (!operation.isEmpty()&&hasPrecedence(c,operation.peek()))
+              {
+                  value.push(mathOperation(value.pop(),value.pop(),operation.pop()));
+              }
+              operation.push(c);
+          }
+      }
+      while (!operation.isEmpty()){
+          value.push(mathOperation(value.pop(),value.pop(),operation.pop()));
+      }
+      return value.pop();
+    }
+    private static boolean hasPrecedence(
+            char op1, char op2)
+    {
+        if (op2 == '(' || op2 == ')')
+            return false;
+        if ((op1 == '*' || op1 == '/') &&
+                (op2 == '+' || op2 == '-'))
+            return false;
+        else
+            return true;
+    }
+    private static int mathOperation(int n1,int n2,char operator ){
+        int ans = 0;
+        switch (operator){
+            case '+':
+                 ans=n1+n2;
+                 break;
+            case '*':
+                 ans=n1*n2;
+                break;
+            case '-':
+                 ans=n2-n1;
+                break;
+            case '/':
+                 ans=n2/n1;
+                break;
+            case '%':
+                 ans=n2%n1;
+                break;
+            case '^':
+                 ans=(int) Math.pow(n2, n1);
+                break;
+        }
+        return ans;
     }
 }
