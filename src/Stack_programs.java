@@ -1,29 +1,13 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 public class Stack_programs {
     static Scanner scan = new Scanner(System.in);
    static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
-       System.out.print("Enter the string : ");
-       String input= scan.nextLine();
-      System.out.println("Infix to Postfix : "+infixToPostfix(input));
-      System.out.println("Infix to Prefix : "+infixToPrefix(input));
-      System.out.println("Prefix to Infix : "+prefixToInfix(infixToPrefix(input)));
-      System.out.println("Pre to Post : "+preToPost(infixToPrefix(input)));
-      System.out.println("Post to pre : "+postToPre(infixToPostfix(input)));
-      System.out.println("post To Infix : "+postToInfix(infixToPostfix(input)));
-      System.out.println(balancedBrackets("[()]{}{[()()]()}"));
-      System.out.println(balancedBrackets("[{(]})]"));
-      System.out.println(arithmeticEvaluation("100 * ( 2 + 12 )"));
-
-       s.push(4);
-       s.push(3);
-       s.push(2);
-       s.push(1);
-       System.out.println(s);
-       reverseStack();
-       System.out.println(s);
-        System.out.println(reverseString("Dhamotharan"));
+        int price[] = { 10, 4, 5, 90, 120, 80 };
+        int[] span=stockSpan(price);
+        System.out.println(Arrays.toString(span));
     }
 
     // method for  Infix expression to Postfix expression
@@ -307,5 +291,21 @@ public class Stack_programs {
             ans.append(stack.pop());
         }
         return ans.toString();
+    }
+    // The Stock Span Problem
+    public static int[] stockSpan(int[] price){
+        int length =price.length;
+        int[] span =new  int[length];
+        Stack<Integer> stack =new Stack<>();
+        stack.push(0);
+        span[0]=1;
+        for (int i=1;i<length;i++){
+            while(!stack.isEmpty()&&price[stack.peek()]<=price[i]){
+                stack.pop();
+            }
+            span[i]=stack.isEmpty()?(i+1):(i- stack.peek());
+            stack.push(i);
+        }
+        return span;
     }
 }
