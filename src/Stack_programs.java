@@ -308,4 +308,5 @@ public class Stack_programs {
         }
         return span;
     }
+    // write a method for Next Greater Element
 }
