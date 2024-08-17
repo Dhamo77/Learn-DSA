@@ -75,4 +75,5 @@ public class Stack_LinkedList<T extends Comparable<T>> {
         head.next=prev;
         head=prev;
     }
+    // Done
 }
