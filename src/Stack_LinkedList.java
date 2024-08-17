@@ -60,5 +60,19 @@ public class Stack_LinkedList<T extends Comparable<T>> {
         }while (current!=head);
         System.out.println("]");
     }
-    // Done 
+    // Reverse the stack without extra space
+    public  void reverse(){
+        if (head == null || head.next == head) {
+            return;
+        }
+        Node<T> current =head,prev=head,next;
+        do {
+            next=current.next;
+            current.next=prev;
+            prev=current;
+            current=next;
+        }while (current!=head);
+        head.next=prev;
+        head=prev;
+    }
 }
