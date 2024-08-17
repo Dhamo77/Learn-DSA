@@ -5,9 +5,10 @@ public class Stack_programs {
     static Scanner scan = new Scanner(System.in);
    static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
-        int price[] = { 10, 4, 5, 90, 120, 80 };
-        int[] span=stockSpan(price);
-        System.out.println(Arrays.toString(span));
+        int price[] = {10,11,8,10,6,21};
+        System.out.println(Arrays.toString(price));
+        int[] ans =printNGE(price);
+        System.out.println(Arrays.toString(ans));
     }
 
     // method for  Infix expression to Postfix expression
@@ -308,5 +309,21 @@ public class Stack_programs {
         }
         return span;
     }
-    // write a method for Next Greater Element
+    // Method for Next Greater Element
+    static int[] printNGE(int arr[]) {
+        int[] ans =new int[arr.length];
+        Stack<Integer> s = new Stack<>();
+        for (int i = arr.length - 1; i >= 0; i--) {
+            while (!s.isEmpty() && s.peek() <= arr[i]) {
+                s.pop();
+            }
+            if (s.isEmpty()) {
+                ans[i] = -1;
+            } else {
+                ans[i] = s.peek();
+            }
+            s.push(arr[i]);
+        }
+        return ans;
+    }
 }
