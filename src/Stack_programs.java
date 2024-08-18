@@ -404,4 +404,5 @@ public class Stack_programs {
                 return true;
         return false;
     }
+    // write a method for Next Greater Frequency Element
 }
