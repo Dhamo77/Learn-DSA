@@ -374,4 +374,5 @@ public class Stack_programs {
                 System.out.print("-1 ");
         }
     }
+    //method for Next Greater Frequency Element
 }
