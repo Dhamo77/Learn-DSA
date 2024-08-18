@@ -5,9 +5,7 @@ public class Stack_programs {
     static Scanner scan = new Scanner(System.in);
    static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
-        int price[] = {10,11,8,10,6,21};
-        nextSmallerOfNextGreater(price);
-
+        System.out.println(findIndexOfClosingBracket("[ABC[23]][89]",1));
     }
 
     // method for  Infix expression to Postfix expression
@@ -374,5 +372,36 @@ public class Stack_programs {
                 System.out.print("-1 ");
         }
     }
-    //method for Next Greater Frequency Element
+    // method for Find index of closing bracket for a given opening bracket
+    public static int findIndexOfClosingBracket(String input,int starting){
+        if (!isBracket(input.charAt(starting))){
+            return -1;
+        }
+        Stack<Character> stack =new Stack<>();
+        char c;
+        int i;
+        stack.push(input.charAt(starting));
+        for ( i=starting+1;i<input.length();i++){
+            c = input.charAt(i);
+            if (isBracket(c)) {
+                if (c=='('||c=='{'||c=='[')
+                    stack.push(c);
+                else {
+                    if ((stack.peek()=='('&&(c!=']'&&c!='}'))||
+                            (stack.peek()=='['&&(c!=')'&&c!='}'))||
+                            (stack.peek()=='{'&&(c!=']'&&c!=')'))){
+                        stack.pop();
+                    }
+                }
+                if (stack.isEmpty())
+                    return i;
+            }
+        }
+        return -1;
+    }
+    private static boolean isBracket(char c){
+        if (c=='('||c==')'||c=='{'||c=='}'||c=='['||c==']')
+                return true;
+        return false;
+    }
 }
