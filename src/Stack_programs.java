@@ -6,9 +6,8 @@ public class Stack_programs {
    static Stack<Integer> s=new Stack<>();
     public static void main(String[] args) {
         int price[] = {10,11,8,10,6,21};
-        System.out.println(Arrays.toString(price));
-        int[] ans =printNGE(price);
-        System.out.println(Arrays.toString(ans));
+        nextSmallerOfNextGreater(price);
+
     }
 
     // method for  Infix expression to Postfix expression
@@ -314,7 +313,7 @@ public class Stack_programs {
         int[] ans =new int[arr.length];
         Stack<Integer> s = new Stack<>();
         for (int i = arr.length - 1; i >= 0; i--) {
-            while (!s.isEmpty() && s.peek() <= arr[i]) {
+            while (!s.isEmpty() && s.peek() < arr[i]) {
                 s.pop();
             }
             if (s.isEmpty()) {
@@ -326,5 +325,53 @@ public class Stack_programs {
         }
         return ans;
     }
-    // Find next Smaller of next Greater in an array
+    public static int[] printNSE(int[] arr){
+        int[] ans = new int[arr.length];
+        int element;
+        Stack<Integer> stack=new Stack<>();
+        for (int i =arr.length-1;i>=0;i--){
+            element=arr[i];
+            while (!stack.isEmpty() && stack.peek()>element){
+                stack.pop();
+            }
+            if (stack.isEmpty()){
+                ans[i]=-1;
+            }
+            else {
+                ans[i]=stack.peek();
+            }
+            stack.push(element);
+        }
+        return ans;
+    }
+
+    // method for Find next Smaller of next Greater in an array
+    private static void nextGreater(int arr[], int next[], char order)
+    {
+        Stack<Integer> stack=new Stack<>();
+        for (int i=arr.length-1; i>=0; i--)
+        {
+            while (!stack.isEmpty() && ((order=='G')? arr[stack.peek()] <= arr[i]:arr[stack.peek()] >= arr[i]))
+                stack.pop();
+            if (!stack.isEmpty())
+                next[i] = stack.peek();
+            else
+                next[i] = -1;
+            stack.push(i);
+        }
+    }
+    public static void nextSmallerOfNextGreater(int arr[])
+    {
+        int NG[]=new int[arr.length];
+        int RS[]=new int[arr.length];
+        nextGreater(arr, NG, 'G');
+        nextGreater(arr, RS, 'S');
+        for (int i=0; i< arr.length; i++)
+        {
+            if (NG[i] != -1 && RS[NG[i]] != -1)
+                System.out.print(arr[RS[NG[i]]]+" ");
+            else
+                System.out.print("-1 ");
+        }
+    }
 }
