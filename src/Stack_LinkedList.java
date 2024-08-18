@@ -1,6 +1,6 @@
 // implement the stack using circular list
 public class Stack_LinkedList<T extends Comparable<T>> {
-    Node<T> head;
+    private Node<T> head;
     private int size;
     private static class Node<T>{
         T value;
@@ -75,5 +75,25 @@ public class Stack_LinkedList<T extends Comparable<T>> {
         head.next=prev;
         head=prev;
     }
-    // Done
+    // method for sort the stack using temporary stack
+    public  void sortStack(Stack<Integer> input){
+        Stack<Integer> temp=new Stack<>();
+        Stack<Integer> store =new Stack<>();
+        while (!input.isEmpty()){
+            int element=input.pop();
+            if (temp.isEmpty()){
+                temp.push(element);
+            }
+            else {
+                while (!temp.isEmpty()&&temp.peek()>element){
+                    store.push(temp.pop());
+                }
+                temp.push(element);
+                while (!store.isEmpty()){
+                    temp.push(store.pop());
+                }
+            }
+        }
+        temp.display();
+    }
 }
